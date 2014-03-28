@@ -5,11 +5,10 @@ usersApp.controller('usersController', function($scope){
     $scope.bugs = [];
 
     function resetSelectedBug() {
-        $scope.selectedBug = {Id:'0', Status: ''};
+        $scope.selectedBug = {Id:'0', Status: 'true', Priority:"High"};
     }
 
     resetSelectedBug();
-
     $scope.createUpdateBug = function(){
 
         $.ajax(
@@ -21,12 +20,10 @@ usersApp.controller('usersController', function($scope){
                 data: JSON.stringify($scope.selectedBug)
             }
         );
-
-
         resetSelectedBug();
-
-
     };
+
+
 
     $scope.readBugs = function(){
         $.ajax(
@@ -41,6 +38,17 @@ usersApp.controller('usersController', function($scope){
             }
         );
     };
+
+
+    $scope.searchIfOpen = function(){
+        return function(bug){
+            if (!$scope.onlyOpen) return true;
+            else{
+                if (bug.Status = 'true')
+                    return true;
+            }
+        }
+    }
 
 });
 

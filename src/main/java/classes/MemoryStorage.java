@@ -18,12 +18,11 @@ public  class MemoryStorage {
     {
         Bug bug = new Bug();
         bug.Summary = "some summary";
-        bug.Status = "some status";
+        bug.Status = true;
         bug.Priority = "some priority";
         bug.Description = "some description";
         bug.Assignee = "some Assignee";
         bug.Id = 0;
-        bug.IsOpen = true;
 
         Bugs.add(bug);
     }
@@ -42,7 +41,7 @@ public  class MemoryStorage {
     public static List<Bug> getOpenBugs() {
         List<Bug> openBugs = new ArrayList<Bug>();
         for(Bug bug: Bugs){
-            if (bug.IsOpen){
+            if (bug.Status){
                 openBugs.add(bug);
             }
         }
@@ -59,7 +58,7 @@ public  class MemoryStorage {
             }
         }
 
-        selectedBug.IsOpen = bug.IsOpen;
+        selectedBug.Status = bug.Status;
         selectedBug.Assignee = bug.Assignee;
         selectedBug.Description = bug.Description;
         selectedBug.Priority = bug.Priority;

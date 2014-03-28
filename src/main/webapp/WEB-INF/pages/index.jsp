@@ -55,18 +55,14 @@
 
         <tr></tr>
         <td>
-            <h4>Status</h4>
-        </td>
-        <td>
-            <input id="bugStatus" ng-model="selectedBug.Status">
-        </td>
-
-        <tr></tr>
-        <td>
             <h4>Priority</h4>
         </td>
         <td>
-            <input id="bugPriority"  ng-model="selectedBug.Priority">
+            <select ng-model="selectedBug.Priority">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select>
         </td>
 
         <tr></tr>
@@ -96,6 +92,19 @@
 
 
         <tr></tr>
+        <td>
+            <h4>Status</h4>
+        </td>
+        <td>
+            <select ng-model="selectedBug.Status">
+                <option value="true">Open</option>
+                <option value="false">Closed</option>
+            </select>
+
+        </td>
+
+
+        <tr></tr>
 
     </table>
 
@@ -106,9 +115,10 @@
 </span>
 
 <span style="display:none; float: left;" id="bugList">
+    Show only open bugs <input ng-model="onlyOpen" type="checkbox" id="onlyOpen">
     <ul>
-        <li ng-repeat="bug in bugs">
-           <a style="font-size: x-large" href="#"> {{bug.Summary}}</a>
+        <li ng-repeat="bug in bugs | filter:searchIfOpen() ">
+           <a style="font-size: x-large" href="#"> {{bug.Id}} {{bug.Summary}}</a>
         </li>
     </ul>
 </span>
