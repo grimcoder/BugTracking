@@ -6,9 +6,14 @@ import java.util.List;
 
 public  class MemoryStorage {
 
+
     static List<Bug> Bugs = new ArrayList<Bug>();
     static int maxId = -1;
+    static int x = 0;
 
+    static {
+        x = 1;
+    }
     public MemoryStorage()
     {
         Bug bug = new Bug();
@@ -63,8 +68,8 @@ public  class MemoryStorage {
 
     }
 
-
     public static int createBug(Bug bug) {
+        x++;
         //increment id
         maxId++;
         bug.Id=maxId;

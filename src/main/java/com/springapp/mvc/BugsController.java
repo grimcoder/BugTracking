@@ -2,6 +2,8 @@ package com.springapp.mvc;
 
 import classes.Bug;
 import classes.MemoryStorage;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +27,8 @@ public class BugsController {
 
     @RequestMapping(value = "/allbugs", method = RequestMethod.GET)
     public @ResponseBody
-    List<Bug> allBugs(ModelMap model) {
-		return MemoryStorage.getAllBugs();
+    ResponseEntity<List<Bug>> allBugs(ModelMap model) {
+		return new ResponseEntity<List<Bug>>(MemoryStorage.getAllBugs(), HttpStatus.OK);
 	}
 
     @RequestMapping(value = "/openbugs", method = RequestMethod.GET)
@@ -44,8 +46,10 @@ public class BugsController {
 
     @RequestMapping(value = "/createbug", method = RequestMethod.POST)
     public @ResponseBody
-    void createBug(@RequestBody Bug bug) {
-		MemoryStorage.createBug(bug);
+    ResponseEntity<String> createBug(@RequestBody Bug bug) {
+        MemoryStorage.createBug(bug);
+		return new ResponseEntity<String>(HttpStatus.CREATED);
+
 	}
 
     @RequestMapping(value = "/updatebug", method = RequestMethod.POST)

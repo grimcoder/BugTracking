@@ -16,20 +16,15 @@
         $(document).ready(
             function(){
 
-
-                $('#createButton').on('click', function(){
-                    alert('a');
-                    $.ajax(
-                            {
-                                url: 'createbug',
-                                type: 'POST',
-                                dataType: 'json',
-                                data: '{}'
-
-                            }
-                    );
+                $('#newBug').on('click', function(){
+                    $('#bugList').hide();
+                    $('#bugForm').show();
                 });
 
+                $('#listLink').on('click', function(){
+                    $('#bugList').show();
+                    $('#bugForm').hide();
+                });
             }
         );
 
@@ -40,15 +35,14 @@
 
 <h1>Bug tracker</h1>
 <div style="height: 50px; width: 100%; background: orangered;">
-    <div   style="margin: 10px; visibility: hidden;">&nbsp;<br>
-	<span style="cursor: pointer; color: #ffffff" id="submitBug">Submit Bug</span> | <span style="cursor: pointer; color: #ffffff" id="bugList">Bugs</span>
-    </div>
 </div>
 
 <div>
+    <a style="font-size: x-large" href="#" id="newBug"> <span>Bug</span></a>&nbsp; |&nbsp;
+    <a style="font-size: x-large" ng-click="readBugs();" id="listLink" href="#"><span>List</span></a>
 
-<span style="display:block; width: 400; float: left; " id="bug">
-    <h3 ng-model="test">Bug</h3>
+<span style="display:block; width: 400;" id="bugForm">
+
 
     <table>
         <tr></tr>
@@ -56,7 +50,7 @@
             <h4>Id</h4>
         </td>
         <td width="250px">
-            <input id="bugId" disabled ng-model="selectedUser.Id">
+            <input id="bugId" disabled ng-model="selectedBug.Id">
         </td>
 
         <tr></tr>
@@ -64,7 +58,7 @@
             <h4>Status</h4>
         </td>
         <td>
-            <input id="bugStatus" ng-model="selectedUser.Status">
+            <input id="bugStatus" ng-model="selectedBug.Status">
         </td>
 
         <tr></tr>
@@ -72,7 +66,7 @@
             <h4>Priority</h4>
         </td>
         <td>
-            <input id="bugPriority"  ng-model="selectedUser.Priority">
+            <input id="bugPriority"  ng-model="selectedBug.Priority">
         </td>
 
         <tr></tr>
@@ -80,15 +74,16 @@
             <h4>Assignee</h4>
         </td>
         <td>
-            <input id="assignee"  ng-model="selectedUser.Assignee">
+            <input id="assignee"  ng-model="selectedBug.Assignee">
         </td>
 
         <tr></tr>
+
         <td>
             <h4>Summary</h4>
         </td>
         <td>
-            <input id="bugSummary"  ng-model="selectedUser.Summary">
+            <input id="bugSummary"  ng-model="selectedBug.Summary">
         </td>
 
         <tr></tr>
@@ -96,8 +91,10 @@
             <h4>Description</h4>
         </td>
         <td>
-            <input id="bugDescription"  ng-model="selectedUser.Description">
+            <input id="bugDescription"  ng-model="selectedBug.Description">
         </td>
+
+
         <tr></tr>
 
     </table>
@@ -108,9 +105,12 @@
 
 </span>
 
-<span style="display:none; float: left;" id="list">
-    <h2>List</h2>
-    <div id="placeholder"></div>
+<span style="display:none; float: left;" id="bugList">
+    <ul>
+        <li ng-repeat="bug in bugs">
+           <a style="font-size: x-large" href="#"> {{bug.Summary}}</a>
+        </li>
+    </ul>
 </span>
 
 </div>
