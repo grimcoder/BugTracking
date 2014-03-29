@@ -1,16 +1,15 @@
 var usersApp = angular.module('usersApp', []);
 
-usersApp.controller('usersController', function($scope){
+usersApp.controller('usersController', function ($scope) {
 
     $scope.bugs = [];
-
 
     function resetSelectedBug() {
         $scope.selectedBug = {Status: 'Open', Priority: "High"};
     }
 
     resetSelectedBug();
-    $scope.createUpdateBug = function(){
+    $scope.createUpdateBug = function () {
 
         $.ajax(
             {
@@ -24,28 +23,24 @@ usersApp.controller('usersController', function($scope){
         resetSelectedBug();
     };
 
-
-
-    $scope.readBugs = function(){
+    $scope.readBugs = function () {
         $.ajax(
             {
                 url: 'allbugs',
                 type: 'GET',
-                success: function(data){
+                success: function (data) {
                     $scope.bugs = data;
                     $scope.$apply();
                 }
-
             }
         );
     };
 
-
-    $scope.searchIfOpen = function(){
-        return function(bug){
+    $scope.searchIfOpen = function () {
+        return function (bug) {
             if (!$scope.onlyOpen)
                 return true;
-            else{
+            else {
                 if (bug.Status == 'Open')
                     return true;
             }
