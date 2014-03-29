@@ -47,8 +47,12 @@ public class BugsController {
     @RequestMapping(value = "/createbug", method = RequestMethod.POST)
     public @ResponseBody
     ResponseEntity<String> createBug(@RequestBody Bug bug) {
-        MemoryStorage.createBug(bug);
-		return new ResponseEntity<String>(HttpStatus.CREATED);
+        if (bug.Id > 0)
+            MemoryStorage.updateBug(bug);
+        else
+            MemoryStorage.createBug(bug);
+
+        return new ResponseEntity<String>(HttpStatus.CREATED);
 
 	}
 

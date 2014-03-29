@@ -8,23 +8,11 @@ public  class MemoryStorage {
 
 
     static List<Bug> Bugs = new ArrayList<Bug>();
-    static int maxId = -1;
-    static int x = 0;
+    static int maxId = 0;
 
-    static {
-        x = 1;
-    }
     public MemoryStorage()
     {
-        Bug bug = new Bug();
-        bug.Summary = "some summary";
-        bug.Status = true;
-        bug.Priority = "some priority";
-        bug.Description = "some description";
-        bug.Assignee = "some Assignee";
-        bug.Id = 0;
 
-        Bugs.add(bug);
     }
 
 
@@ -41,7 +29,7 @@ public  class MemoryStorage {
     public static List<Bug> getOpenBugs() {
         List<Bug> openBugs = new ArrayList<Bug>();
         for(Bug bug: Bugs){
-            if (bug.Status){
+            if (bug.Status == "Open") {
                 openBugs.add(bug);
             }
         }
@@ -68,7 +56,7 @@ public  class MemoryStorage {
     }
 
     public static int createBug(Bug bug) {
-        x++;
+
         //increment id
         maxId++;
         bug.Id=maxId;

@@ -4,8 +4,9 @@ usersApp.controller('usersController', function($scope){
 
     $scope.bugs = [];
 
+
     function resetSelectedBug() {
-        $scope.selectedBug = {Id:'0', Status: 'true', Priority:"High"};
+        $scope.selectedBug = {Status: 'Open', Priority: "High"};
     }
 
     resetSelectedBug();
@@ -17,7 +18,7 @@ usersApp.controller('usersController', function($scope){
                 type: 'POST',
                 contentType: "application/json",
                 dataType: 'json',
-                data: JSON.stringify($scope.selectedBug)
+                data: angular.toJson($scope.selectedBug)
             }
         );
         resetSelectedBug();
@@ -42,13 +43,19 @@ usersApp.controller('usersController', function($scope){
 
     $scope.searchIfOpen = function(){
         return function(bug){
-            if (!$scope.onlyOpen) return true;
+            if (!$scope.onlyOpen)
+                return true;
             else{
-                if (bug.Status = 'true')
+                if (bug.Status == 'Open')
                     return true;
             }
         }
-    }
+    };
+
+    $scope.edit = function (bug) {
+        $scope.selectedBug = bug;
+        showEdit();
+    };
 
 });
 

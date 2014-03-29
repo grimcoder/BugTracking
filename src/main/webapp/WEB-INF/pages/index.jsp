@@ -13,18 +13,22 @@
 
     <script>
 
+        showList = function () {
+            $('#bugList').show();
+            $('#bugForm').hide();
+        };
+
+        showEdit = function () {
+            $('#bugList').hide();
+            $('#bugForm').show();
+        };
+
         $(document).ready(
             function(){
 
-                $('#newBug').on('click', function(){
-                    $('#bugList').hide();
-                    $('#bugForm').show();
-                });
+                $('#newBug').on('click', showEdit);
 
-                $('#listLink').on('click', function(){
-                    $('#bugList').show();
-                    $('#bugForm').hide();
-                });
+                $('#listLink').on('click', showList);
             }
         );
 
@@ -92,13 +96,15 @@
 
 
         <tr></tr>
+
         <td>
             <h4>Status</h4>
         </td>
+
         <td>
             <select ng-model="selectedBug.Status">
-                <option value="true">Open</option>
-                <option value="false">Closed</option>
+                <option value="Open">Open</option>
+                <option value="Close">Closed</option>
             </select>
 
         </td>
@@ -118,7 +124,7 @@
     Show only open bugs <input ng-model="onlyOpen" type="checkbox" id="onlyOpen">
     <ul>
         <li ng-repeat="bug in bugs | filter:searchIfOpen() ">
-           <a style="font-size: x-large" href="#"> {{bug.Id}} {{bug.Summary}}</a>
+            <a ng-click="edit(bug);" style="font-size: x-large" href="#"> {{bug.Id}} {{bug.Summary}}</a>
         </li>
     </ul>
 </span>
