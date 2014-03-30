@@ -1,5 +1,8 @@
 package classes;
 
+import dao.BugTrackerDAOMongo;
+import dao.IBugTrackerDAO;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,45 +25,31 @@ public  class MemoryStorage {
 
 
     public static List<Bug> getAllBugs() {
-        return Bugs;
+
+
+        IBugTrackerDAO dao = new BugTrackerDAOMongo();
+        return dao.GetBugs();
+
     }
 
 
     public static List<Bug> getOpenBugs() {
-        List<Bug> openBugs = new ArrayList<Bug>();
-        for(Bug bug: Bugs){
-            if (bug.Status == "Open") {
-                openBugs.add(bug);
-            }
-        }
-        return openBugs;
+        IBugTrackerDAO dao = new BugTrackerDAOMongo();
+        return  dao.GetOpenBugs();
     }
 
 
     public static void updateBug(Bug bug) {
-        Bug selectedBug = null;
-        for(Bug _bug: Bugs){
-            if (_bug.getId() == bug.getId()){
-                selectedBug = _bug;
-                break;
-            }
-        }
-
-        selectedBug.Status = bug.Status;
-        selectedBug.Assignee = bug.Assignee;
-        selectedBug.Description = bug.Description;
-        selectedBug.Priority = bug.Priority;
-        selectedBug.Status = bug.Status;
-        selectedBug.Summary = bug.Summary;
+        IBugTrackerDAO dao = new BugTrackerDAOMongo();
+        dao.UpdateBug(bug);
 
     }
 
-    public static int createBug(Bug bug) {
+    public static String createBug(Bug bug) {
 
-        //increment id
-        maxId++;
-        Bugs.add(bug);
-        return maxId;
+        IBugTrackerDAO dao = new BugTrackerDAOMongo();
+        dao.AddBug(bug);
+        return  bug.getId();
     }
 
 
@@ -69,11 +58,7 @@ public  class MemoryStorage {
     }
 
     public static Bug getBug(String id) {
-        for(Bug _bug: Bugs){
-            if (_bug.getId() == id){
-                return  _bug;
-            }
-        }
-        return null;
+        IBugTrackerDAO dao = new BugTrackerDAOMongo();
+        return  dao.GetBug(id);
     }
 }
