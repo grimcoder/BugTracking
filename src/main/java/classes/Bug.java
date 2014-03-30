@@ -1,5 +1,6 @@
 package classes;
 
+import org.codehaus.jackson.annotate.JsonProperty;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
 /**
@@ -72,10 +73,10 @@ public class Bug  {
     @ObjectId
     private String _id;
 
-    public String Status; // Open = true, Closed = false
-    public String Priority;
-    public String Assignee;
-    public String Summary;
-    public String Description;
+    private String Status; // Open = true, Closed = false
+    private String Priority;
+    private String Assignee;
+    private String Summary;
+    private String Description;
 
 }

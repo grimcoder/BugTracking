@@ -4,11 +4,11 @@ usersApp.controller('usersController', function ($scope) {
 
     $scope.bugs = [];
 
-    function resetSelectedBug() {
-        $scope.selectedBug = {Status: 'Open', Priority: "High"};
+    $scope.resetSelectedBug = function() {
+        $scope.selectedBug = {status: 'Open', priority: "High"};
     }
 
-    resetSelectedBug();
+    $scope.resetSelectedBug();
     $scope.createUpdateBug = function () {
 
         $.ajax(
@@ -41,7 +41,7 @@ usersApp.controller('usersController', function ($scope) {
             if (!$scope.onlyOpen)
                 return true;
             else {
-                if (bug.Status == 'Open')
+                if (bug.status == 'Open')
                     return true;
             }
         }

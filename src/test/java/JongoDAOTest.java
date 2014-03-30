@@ -27,7 +27,7 @@ public class JongoDAOTest {
         Assert.assertTrue(openBugs.size() == 2);
 
         Bug bug2 = openBugs.get(1);
-        Assert.assertTrue(bug2.Summary.equals("Bug 2"));
+        Assert.assertTrue(bug2.getSummary().equals("Bug 2"));
 
         String bug2id = bug2.getId();
 

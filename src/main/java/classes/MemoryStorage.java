@@ -28,7 +28,8 @@ public  class MemoryStorage {
 
 
         IBugTrackerDAO dao = new BugTrackerDAOMongo();
-        return dao.GetBugs();
+        List<Bug> allbugs = dao.GetBugs();
+        return allbugs;
 
     }
 

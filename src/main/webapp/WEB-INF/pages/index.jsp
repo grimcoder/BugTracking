@@ -24,57 +24,51 @@
         };
 
         $(document).ready(
-            function(){
+                function () {
 
-                $('#newBug').on('click', showEdit);
+                    $('#newBug').on('click', showEdit);
 
-                $('#listLink').on('click', showList);
-            }
+                    $('#listLink').on('click', showList);
+                }
         );
 
     </script>
 
     <style>
-        #outPopUp{
-            position:absolute;
-            width:300px;
-            height:200px;
-            z-index:15;
-            top:50%;
-            left:50%;
-            margin:-200px 0 0 -250px;
+        #outPopUp {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            z-index: 15;
+            top: 50%;
+            left: 50%;
+            margin: -200px 0 0 -250px;
         }
     </style>
 </head>
 
 <body style="margin: 20px" ng-controller="usersController">
 <div id="outPopUp">
-<h1>Bug tracker</h1>
-<div style="height: 50px; width: 300px; background: darkseagreen">
-</div>
+    <h1>Bug tracker</h1>
 
-<div>
-    <a style="font-size: x-large" href="#" id="newBug"> <span>Bug</span></a>&nbsp; |&nbsp;
-    <a style="font-size: x-large" ng-click="readBugs();" id="listLink" href="#"><span>List</span></a>
+    <div style="height: 50px; width: 300px; background: darkseagreen">
+    </div>
+
+    <div>
+        <a style="font-size: x-large" href="#" id="newBug"> <span>Bug</span></a>&nbsp; |&nbsp;
+        <a style="font-size: x-large" ng-click="readBugs();" id="listLink" href="#"><span>List</span></a>
 
 <span style="display:block; width: 400;" id="bugForm">
 
 
     <table>
-        <tr></tr>
-        <td width="100px">
-            <h4>Id</h4>
-        </td>
-        <td width="250px">
-            <input id="bugId" disabled ng-model="selectedBug.Id">
-        </td>
 
         <tr></tr>
         <td>
             <h4>Priority</h4>
         </td>
         <td>
-            <select ng-model="selectedBug.Priority">
+            <select ng-model="selectedBug.priority">
                 <option value="High">High</option>
                 <option value="Medium">Medium</option>
                 <option value="Low">Low</option>
@@ -86,7 +80,7 @@
             <h4>Assignee</h4>
         </td>
         <td>
-            <input id="assignee"  ng-model="selectedBug.Assignee">
+            <input id="assignee" ng-model="selectedBug.assignee">
         </td>
 
         <tr></tr>
@@ -95,7 +89,7 @@
             <h4>Summary</h4>
         </td>
         <td>
-            <input id="bugSummary"  ng-model="selectedBug.Summary">
+            <input id="bugSummary" ng-model="selectedBug.summary">
         </td>
 
         <tr></tr>
@@ -103,32 +97,29 @@
             <h4>Description</h4>
         </td>
         <td>
-            <input id="bugDescription"  ng-model="selectedBug.Description">
+            <input id="bugDescription" ng-model="selectedBug.description">
         </td>
 
-
         <tr></tr>
-
         <td>
             <h4>Status</h4>
         </td>
 
         <td>
-            <select ng-model="selectedBug.Status">
+            <select ng-model="selectedBug.status">
                 <option value="Open">Open</option>
                 <option value="Closed">Closed</option>
             </select>
-
         </td>
-
-
         <tr></tr>
-
     </table>
 
     <br>
 
-    <button id="createButton" value="Create/Edit" ng-click="createUpdateBug();"  >Submit</button>
+    <button id="createButton" value="Create/Edit" ng-click="createUpdateBug();">Submit</button>
+    &nbsp;
+    <button id="resetButton" value="Create/Edit" ng-click="resetSelectedBug();">Submit</button>
+
 
 </span>
 
@@ -136,12 +127,12 @@
     Show only open bugs <input ng-model="onlyOpen" type="checkbox" id="onlyOpen">
     <ul>
         <li ng-repeat="bug in bugs | filter:searchIfOpen() ">
-            <a ng-click="edit(bug);" style="font-size: x-large" href="#"> {{bug.Id}} {{bug.Summary}}</a>
+            <a ng-click="edit(bug);" style="font-size: x-large" href="#"> {{bug.summary}}</a>
         </li>
     </ul>
 </span>
 
-</div>
+    </div>
 </div>
 </body>
 
