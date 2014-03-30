@@ -21,7 +21,7 @@ public class BugsController {
 
     @RequestMapping(value = "/allbugs/{id}", method = RequestMethod.GET)
     public @ResponseBody
-    Bug getBug(@PathVariable int id) {
+    Bug getBug(@PathVariable String id) {
 		return MemoryStorage.getBug(id);
 	}
 
@@ -47,7 +47,7 @@ public class BugsController {
     @RequestMapping(value = "/createbug", method = RequestMethod.POST)
     public @ResponseBody
     ResponseEntity<String> createBug(@RequestBody Bug bug) {
-        if (bug.Id > 0)
+        if (bug.getId() != null)
             MemoryStorage.updateBug(bug);
         else
             MemoryStorage.createBug(bug);
@@ -62,7 +62,6 @@ public class BugsController {
 		MemoryStorage.updateBug(bug);
 
 	}
-
 
 
 }

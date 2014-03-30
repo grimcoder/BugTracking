@@ -40,7 +40,7 @@ public  class MemoryStorage {
     public static void updateBug(Bug bug) {
         Bug selectedBug = null;
         for(Bug _bug: Bugs){
-            if (_bug.Id == bug.Id){
+            if (_bug.getId() == bug.getId()){
                 selectedBug = _bug;
                 break;
             }
@@ -59,7 +59,6 @@ public  class MemoryStorage {
 
         //increment id
         maxId++;
-        bug.Id=maxId;
         Bugs.add(bug);
         return maxId;
     }
@@ -69,9 +68,9 @@ public  class MemoryStorage {
 
     }
 
-    public static Bug getBug(int id) {
+    public static Bug getBug(String id) {
         for(Bug _bug: Bugs){
-            if (_bug.Id == id){
+            if (_bug.getId() == id){
                 return  _bug;
             }
         }

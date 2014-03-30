@@ -33,12 +33,24 @@
         );
 
     </script>
+
+    <style>
+        #outPopUp{
+            position:absolute;
+            width:300px;
+            height:200px;
+            z-index:15;
+            top:50%;
+            left:50%;
+            margin:-200px 0 0 -250px;
+        }
+    </style>
 </head>
 
 <body style="margin: 20px" ng-controller="usersController">
-
+<div id="outPopUp">
 <h1>Bug tracker</h1>
-<div style="height: 50px; width: 100%; background: orangered;">
+<div style="height: 50px; width: 300px; background: darkseagreen">
 </div>
 
 <div>
@@ -104,7 +116,7 @@
         <td>
             <select ng-model="selectedBug.Status">
                 <option value="Open">Open</option>
-                <option value="Close">Closed</option>
+                <option value="Closed">Closed</option>
             </select>
 
         </td>
@@ -130,7 +142,7 @@
 </span>
 
 </div>
-
+</div>
 </body>
 
 </html>
